@@ -1,5 +1,5 @@
 # Lukko_ja_Ovikello
-Korjasin sysipaskan Glue-merkkisen ulko-oven lukon
+Korjasin sysipaskan ruotsalaisen Glue-merkkisen ulko-oven lukon
 
 Lukko otti yhteyttä johonkin serveriin Kiinassa ja se kesti minuutteja.
 Kerran se avasi oven ominpäin. Se saattoi myös jumittua, koska moottori
@@ -17,7 +17,7 @@ Kytkin myös ovikellon optoisolaattorin kautta ESP-01 kortille.
 Menusta on mahdollista valita OVIKELLO, jolloinka ovi avautuu heti
 kun ovikelloa painaa. Mutta vain kerran. Siäovi on lukittavissa,
 eli tätä voivat käyttää pesukoneen tuojat. Muuten ovikelloa
-pitää rämpyttää tasan 9 kertaa, tai "HIH", jos on viestimies.
+pitää rämpyttää tasan 9 kertaa, tai "HEH", jos on viestimies.
 
 Lisäksi yksi rele ohjaa ovitilassa olevaa tuuletinta, mikä
 pitää rapusta tulevat käryt rapussa.
