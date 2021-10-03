@@ -79,11 +79,11 @@ from machine import Pin
 BUTTON=Pin(2, Pin.IN)  
 HI=1; LO=0
 
-def buttoni(kertoja):
+def buttoni():
+    nummer=0
     if BUTTON.value()==LO:
         loc=0
         hic=0
-        nummer=0
         while hic<50:
             while BUTTON.value()==LO:
                 time.sleep(0.010)
@@ -95,11 +95,7 @@ def buttoni(kertoja):
                 nummer=nummer+1
             time.sleep(0.010)
             hic=hic+1 
-        if kertoja==nummer:
-            auki()
-            return False
-    else:
-        return True
+    return nummer
 
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -137,9 +133,12 @@ while True:
         conn.sendall(response)
         conn.close()
     except OSError:
-        if OVIKELLO:
-            OVIKELLO=buttoni(1)
-        else:
-            buttoni(9)
+        nummer=buttoni()
+        if nummer>0:
+            if OVIKELLO:
+                OVIKELLO=False
+                auki()
+            elif nummer==9:
+                auki()
  
 
