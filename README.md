@@ -28,4 +28,5 @@ näkyy tarvittaessa yleisessä internetissä, mikä on huisin kätevää.  Turva
 säilyy sikäli, että lukkoserveri saa virtaa vain jos eteisen
 tuulikaapissa on valot.
 
-<img src=lukko.png> <img src=creenshot_20211003-103116.png>
+<img src=lukko.png>
+<img src=creenshot_20211003-103116.png>
