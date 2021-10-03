@@ -27,3 +27,5 @@ satunnaisesti pingailevat verkkokonnat availe ovea, koska se myös
 näkyy tarvittaessa yleisessä internetissä, mikä on huisin kätevää.  Turvallisuus
 säilyy sikäli, että lukkoserveri saa virtaa vain jos eteisen
 tuulikaapissa on valot.
+
+<img src=lukko.png>
