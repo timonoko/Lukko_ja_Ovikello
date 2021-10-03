@@ -23,5 +23,7 @@ Lisäksi yksi rele ohjaa ovitilassa olevaa tuuletinta, mikä
 pitää rapusta tulevat käryt rapussa.
 
 Lukkoa avatessa pitää ensiksi valita "AU-" ja sitten "KI", jotteivat 
-satunnaisesti pingailevat verkkokonnat avlaile ove, koska se myös
-näkyy yleisessä internetissä, mikä on kätevää.
+satunnaisesti pingailevat verkkokonnat availe ovea, koska se myös
+näkyy tarvittaessa yleisessä internetissä, mikä on huisin kätevää.  Turvallisuus
+säilyy sikäli, että lukkoserveri saa virtaa vain jos eteisen
+kylmäkaapissa on valot.
