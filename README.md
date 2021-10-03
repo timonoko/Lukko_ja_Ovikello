@@ -21,3 +21,7 @@ pitää rämpyttää tasan 9 kertaa, tai "HIH", jos on viestimies.
 
 Lisäksi yksi rele ohjaa ovitilassa olevaa tuuletinta, mikä
 pitää rapusta tulevat käryt rapussa.
+
+Lukkoa avatessa pitää ensiksi valita "AU-" ja sitten "KI", jotteivat 
+satunnaisesti pingailevat verkkokonnat avlaile ove, koska se myös
+näkyy yleisessä internetissä, mikä on kätevää.
