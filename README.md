@@ -26,4 +26,4 @@ Lukkoa avatessa pitää ensiksi valita "AU-" ja sitten "KI", jotteivat
 satunnaisesti pingailevat verkkokonnat availe ovea, koska se myös
 näkyy tarvittaessa yleisessä internetissä, mikä on huisin kätevää.  Turvallisuus
 säilyy sikäli, että lukkoserveri saa virtaa vain jos eteisen
-kylmäkaapissa on valot.
+tuulikaapissa on valot.
