@@ -31,15 +31,13 @@ def web_page():
   else:
     butt="button"
   if OVIKELLO:
-    butt2="button button2"
-    teksti="KERRAN"
-  else:
-    butt2="button"
-    teksti="OVIKELLO"
+    hit="""<a href="/kerran"> <button class="button button2" >KERRAN</button></a>"""
+  else:  
+    hit="""<a href="/ovikello"> <button class="button" >OVIKELLO</button></a>"""
   menu=""" <p> 
     <a href="/au"> <button class=" """+butt+""" " >AU-</button></a>
     <a href="/ki"> <button class="button">KI</button></a> <p>
-    <a href="/ovikello"> <button class=" """+butt2+""" " > """+teksti+"""</button></a>
+    """+hit+"""
    <p><p> """
   for x in range(3,5):
      menu=menu+"""
@@ -110,10 +108,9 @@ while True:
         request = str(request)
         s.settimeout(5.0)
         if request.find('/ovikello') == 6:
-            if OVIKELLO:
-                OVIKELLO=False
-            else:
                 OVIKELLO=True
+        if request.find('/kerran') == 6:
+                OVIKELLO=False
         if request.find('/ki') == 6:
             if AU:
                 auki()
