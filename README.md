@@ -19,8 +19,9 @@ kun ovikelloa painaa. Mutta vain kerran. Sisäovi on lukittavissa,
 eli tätä voivat käyttää pakettien tuojat. Muuten ovikelloa
 pitää rämpyttää tasan 9 kertaa, tai "HEH", jos on viestimies.
 
-Lisäksi yksi rele ohjaa ovitilassa olevaa tuuletinta, mikä
-pitää rapusta tulevat käryt rapussa.
+Lisäksi yksi rele (3) ohjaa ovitilassa olevaa tuuletinta, mikä
+pitää rapusta tulevat käryt rapussa. Hetikohta keksin miten rele (4)
+lämäyttä Abloy-oven takas kiinni, mutta pelkkä magneetti ei näytä riittävän.
 
 Lukkoa avatessa pitää ensiksi valita "AU-" ja sitten "KI", jotteivat 
 satunnaisesti pingailevat verkkokonnat availe ovea, koska se myös
