@@ -16,7 +16,7 @@ voi käyttää.
 Kytkin myös ovikellon optoisolaattorin kautta ESP-01 kortille.
 Menusta on mahdollista valita OVIKELLO, jolloinka ovi avautuu heti
 kun ovikelloa painaa. Mutta vain kerran. Siäovi on lukittavissa,
-eli tätä voivat käyttää pesukoneen tuojat. Muuten ovikelloa
+eli tätä voivat käyttää pakettien tuojat. Muuten ovikelloa
 pitää rämpyttää tasan 9 kertaa, tai "HEH", jos on viestimies.
 
 Lisäksi yksi rele ohjaa ovitilassa olevaa tuuletinta, mikä
