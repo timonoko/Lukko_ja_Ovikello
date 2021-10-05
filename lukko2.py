@@ -24,27 +24,32 @@ for x in range(1,5): rele(x,0)
 
 AU=False
 OVIKELLO=False
+RING=False
 
 def web_page():
-  if AU:
-    butt="button button2"
-  else:
-    butt="button"
-  if OVIKELLO:
-    hit="""<a href="/kerran"> <button class="button button2" >KERRAN</button></a>"""
-  else:  
-    hit="""<a href="/ovikello"> <button class="button" >OVIKELLO</button></a>"""
-  menu=""" <p> 
+    if AU:
+        butt="button button2"
+    else:
+        butt="button"
+    if OVIKELLO:
+        hit="""<a href="/kerran"> <button class="button button2" >KERRAN</button></a>"""
+    else:  
+        hit="""<a href="/ovikello"> <button class="button" >OVIKELLO</button></a>"""
+    if RING:
+        ring="""<p><a href="/ring"> <button class="button" >RING</button></a>"""
+    else:
+        ring=" "
+    menu=""" <p> 
     <a href="/au"> <button class=" """+butt+""" " >AU-</button></a>
     <a href="/ki"> <button class="button">KI</button></a> <p>
-    """+hit+"""
-   <p><p> """
-  for x in range(3,5):
-     menu=menu+"""
+    """+hit+ring+"""
+    <p><p> """
+    for x in range(3,5):
+        menu=menu+"""
     <p> """ +str(x)+":"+str(releet[x])+ """ <a href="/r%ion"> <button class="button button2">ON</button></a>
      <a href="/r%ioff"> <button class="button">OFF</button></a></p>
     """%(x,x)
-  html = """
+    html = """
      <html><head> 
      <title>LUKKO</title>
      <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -59,7 +64,7 @@ def web_page():
      """ + menu + """
      </body>
    </html>"""
-  return html
+    return html
 
 def auki():
     rele(1,1)
@@ -123,6 +128,8 @@ while True:
             if request.find('/r'+str(r)+'off') == 6: rele(r,0)
         if request.find('/r5off') == 6:
             for x in range(1,5): rele(x,0)
+        if request.find('/ring') == 6:
+            RING=False
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
@@ -132,10 +139,12 @@ while True:
     except OSError:
         nummer=buttoni()
         if nummer>0:
+#            print("RIING")
+            RING=True
             if OVIKELLO:
                 OVIKELLO=False
                 auki()
-            elif nummer==9:
+            elif nummer==7:
                 auki()
  
 
