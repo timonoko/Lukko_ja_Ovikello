@@ -29,7 +29,7 @@ näkyy tarvittaessa yleisessä internetissä, mikä on huisin kätevää.  Turva
 säilyy sikäli, että lukkoserveri saa virtaa vain jos eteisen
 tuulikaapissa on valot.
 
-Parannus: "curl Lukko | grep ring" havaitsee ovikellon, jos esmes on kuuullokeet päässä.
+Parannus: "curl Lukko | grep ring" havaitsee ovikellon, jos esmes on kuullokeet päässä.
 
 <img src=lukko.png>
 <img src=screen.png>
