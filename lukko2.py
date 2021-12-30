@@ -62,6 +62,8 @@ def web_page():
       <body>
      <h1>LUKKO</h1> 
      """ + menu + """
+      <p> =====================
+    
      </body>
    </html>"""
     return html
