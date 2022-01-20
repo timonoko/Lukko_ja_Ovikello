@@ -8,7 +8,7 @@ ei saanut tarpeeksi tehoja.
 Purin koko paskan ja jäljelle jäi vain moottori ja kotelo.
 
 Ohjaan moottoria 4 releen ESP-01 kortilla ja 12 voltilla
-mutta 10 ohmin vastuksen kautta. Lukossa oli jonkinlainen anturi, joka
+mutta 10 ohmin vastuksen kautta (korjaus: lisäsin siihen toisen 10 ohmin vastuksen sarjaan, koska ulisi rasittavasti). Lukossa oli jonkinlainen anturi, joka
 havaitsi millon jumittaa. Minä ajan sitä vain voimalla auki 2 sekunttia ja
 kiinni 1 sekunttia, jolloin akseli asemoituu keskelle, ja nuppia
 voi käyttää.
