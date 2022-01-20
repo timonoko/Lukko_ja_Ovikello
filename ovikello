@@ -1,0 +1,10 @@
+%! /bin/bash
+
+# Ovikellon virittäminen yleisen internetin kautta oli usein hidasta.
+# Tämä "oikello" on pöytäkoneessa. Käynnistän sen termux-ssh-shortcutilla.
+
+echo curl Lukko/ovikello | at now
+
+
+
+
