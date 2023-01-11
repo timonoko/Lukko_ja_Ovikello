@@ -113,11 +113,7 @@ s.listen(5)
 
 reset_laskuri=0
 
-from machine import WDT
-wdt=WDT() # about 6 seconds WatchDoG
-
 while True:
-    wdt.feed()
     reset_laskuri+=1
     if reset_laskuri>10000: 
         import uping
