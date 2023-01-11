@@ -47,11 +47,14 @@ def web_page():
     for x in range(3,5):
         menu=menu+"""
     <p> """ +str(x)+":"+str(releet[x])+ """ <a href="/r%ion"> <button class="button button2">ON</button></a>
-     <a href="/r%ioff"> <button class="button">OFF</button></a></p>
+     <a href="/r%ioff"> <button class="button">OFF</button></a>
     """%(x,x)
+    sta_if = network.WLAN(network.STA_IF)
+    this_ip=sta_if.ifconfig()[0]
     html = """
      <html><head> 
      <title>LUKKO</title>
+     <meta http-equiv="refresh" content="3;url=http://"""+this_ip+"""/">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="data:,">
      <style>html{font-family: Helvetica; display:inline-block; margin: 0px auto; text-align: center;}
@@ -62,8 +65,9 @@ def web_page():
       <body>
      <h1>LUKKO</h1> 
      """ + menu + """
-      <p> =====================
-    
+      <p> 
+     """ + this_ip + """
+      <p>    
      </body>
    </html>"""
     return html
@@ -107,7 +111,22 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
 
+reset_laskuri=0
+
+from machine import WDT
+wdt=WDT() # about 6 seconds WatchDoG
+
 while True:
+    wdt.feed()
+    reset_laskuri+=1
+    if reset_laskuri>10000: 
+        import uping
+        p=uping.ping('192.168.1.11')
+        if p[1]==0:
+            import machine
+            machine.reset()
+        else:
+            reset_laskuri=0
     s.settimeout(0.2)
     try:
         conn, addr = s.accept()
@@ -132,6 +151,10 @@ while True:
             for x in range(1,5): rele(x,0)
         if request.find('/ring') == 6:
             RING=False
+        if request.find('/reset') == 6:
+            import machine
+            conn.close()
+            machine.reset()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
@@ -141,7 +164,6 @@ while True:
     except OSError:
         nummer=buttoni()
         if nummer>0:
-#            print("RIING")
             RING=True
             if OVIKELLO:
                 OVIKELLO=False
