@@ -115,7 +115,8 @@ reset_laskuri=0
 
 while True:
     reset_laskuri+=1
-    if reset_laskuri>10000: 
+    if reset_laskuri%100==0: print('reset_laskuri:',reset_laskuri)
+    if reset_laskuri>1000: 
         import uping
         p=uping.ping('192.168.1.11')
         if p[1]==0:
