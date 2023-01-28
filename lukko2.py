@@ -7,6 +7,8 @@ except:
   import socket
 import network,time
 
+import machine
+
 # print prints only to Python client
 from machine import UART
 uart = UART(0, 115200)
@@ -116,14 +118,13 @@ reset_laskuri=0
 while True:
     reset_laskuri+=1
     if reset_laskuri%100==0: print('reset_laskuri:',reset_laskuri)
-    if reset_laskuri>1000: 
+    if reset_laskuri%1000==0: 
         import uping
         p=uping.ping('192.168.1.11')
         if p[1]==0:
-            import machine
             machine.reset()
-        else:
-            reset_laskuri=0
+        elif reset_laskuri>20000:
+            machine.reset()
     s.settimeout(0.2)
     try:
         conn, addr = s.accept()
