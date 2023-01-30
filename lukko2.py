@@ -17,7 +17,8 @@ uart.write(b'Uart works  #6')
 
 releet=['-',0,0,0,0,'*']
 
-def rele(r,o): 
+def rele(r,o):
+    global releet
     releet[r]=o
     uart.write(b'%c%c%c%c'%(0xA0,r,o,0xA0+o+r))
     time.sleep(0.2)
@@ -27,6 +28,7 @@ for x in range(1,5): rele(x,0)
 AU=False
 OVIKELLO=False
 RING=False
+reset_laskuri=0
 
 def web_page():
     if AU:
@@ -70,6 +72,8 @@ def web_page():
       <p> 
      """ + this_ip + """
       <p>    
+     """ + str(reset_laskuri) + """
+      <p>    
      </body>
    </html>"""
     return html
@@ -109,22 +113,36 @@ def buttoni():
     return nummer
 
 
+
+def savee(lista):
+    with open('jemma.txt','w') as f:
+        for x in lista:
+           f.write(x+"="+str(eval(x))+"\n")
+
+def macreset():
+    savee(["OVIKELLO","releet","AU"])
+    conn.close()
+    machine.reset()
+
+def loadee():
+    with open('jemma.txt','r') as f:
+        exec(f.read())
+
+try: loadee()
+except: pass
+
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
 
-reset_laskuri=0
-
 while True:
     reset_laskuri+=1
-    if reset_laskuri%100==0: print('reset_laskuri:',reset_laskuri)
+    if reset_laskuri%100==0: print('reset_laskuriii:',reset_laskuri)
     if reset_laskuri%1000==0: 
         import uping
-        p=uping.ping('192.168.1.11')
+        p=uping.ping('192.168.1.63')
         if p[1]==0:
-            machine.reset()
-        elif reset_laskuri>20000:
-            machine.reset()
+            macreset()
     s.settimeout(0.2)
     try:
         conn, addr = s.accept()
@@ -150,9 +168,7 @@ while True:
         if request.find('/ring') == 6:
             RING=False
         if request.find('/reset') == 6:
-            import machine
-            conn.close()
-            machine.reset()
+            macreset()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')
