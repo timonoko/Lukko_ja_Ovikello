@@ -23,8 +23,6 @@ def rele(r,o):
     uart.write(b'%c%c%c%c'%(0xA0,r,o,0xA0+o+r))
     time.sleep(0.2)
 
-for x in range(1,5): rele(x,0)
-
 AU=False
 OVIKELLO=False
 RING=False
@@ -118,9 +116,11 @@ def savee(lista):
     with open('jemma.txt','w') as f:
         for x in lista:
            f.write(x+"="+str(eval(x))+"\n")
-
-def macreset():
+def save_vars():
     savee(["OVIKELLO","releet","AU"])
+           
+def macreset():
+    save_vars()
     conn.close()
     machine.reset()
 
@@ -131,6 +131,8 @@ def loadee():
 try: loadee()
 except: pass
 
+for x in range(1,5): rele(x,releet[x])
+    
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
@@ -151,15 +153,15 @@ while True:
         s.settimeout(5.0)
         if request.find('/ovikello') == 6:
                 OVIKELLO=True
+                save_vars()
         if request.find('/kerran') == 6:
                 OVIKELLO=False
         if request.find('/ki') == 6:
             if AU:
                 auki()
-            OVIKELLO=False
-        AU=False
+                AU=False
         if request.find('/au') == 6:
-            AU=True
+            AU=not AU
         for r in range(1,5):
             if request.find('/r'+str(r)+'on') == 6: rele(r,1)
             if request.find('/r'+str(r)+'off') == 6: rele(r,0)
