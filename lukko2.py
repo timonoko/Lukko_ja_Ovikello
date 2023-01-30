@@ -7,7 +7,7 @@ except:
   import socket
 import network,time
 
-import machine
+import machine,uping
 
 # print prints only to Python client
 from machine import UART
@@ -76,14 +76,21 @@ def web_page():
    </html>"""
     return html
 
+
+def mysleep(x):
+        global wdt
+        for y in range(5*x):
+            wdt.feed()
+            time.sleep(0.2)
+
 def auki():
     rele(1,1)
     rele(2,0)
-    time.sleep(2)
+    mysleep(2)
     rele(1,0)
-    time.sleep(2)
+    mysleep(2)
     rele(2,1)
-    time.sleep(1)
+    mysleep(1)
     rele(1,0)
     rele(2,0)
     
@@ -131,20 +138,27 @@ def loadee():
 try: loadee()
 except: pass
 
-for x in range(1,5): rele(x,releet[x])
+from machine import WDT
+wdt=WDT() 
     
+for x in range(1,5): rele(x,releet[x])
+   
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('', 80))
 s.listen(5)
 
+print('KAYNNISTYS!')
+
 while True:
     reset_laskuri+=1
+    wdt.feed()
     if reset_laskuri%100==0: print('reset_laskuriii:',reset_laskuri)
     if reset_laskuri%1000==0: 
-        import uping
+        p=uping.ping('192.168.1.11')
+        if p[1]==0: macreset()
+    if reset_laskuri%30100==0: 
         p=uping.ping('192.168.1.63')
-        if p[1]==0:
-            macreset()
+        if p[1]==0: macreset()
     s.settimeout(0.2)
     try:
         conn, addr = s.accept()
@@ -156,15 +170,19 @@ while True:
                 save_vars()
         if request.find('/kerran') == 6:
                 OVIKELLO=False
+                save_vars()
         if request.find('/ki') == 6:
             if AU:
                 auki()
                 AU=False
+                save_vars()
         if request.find('/au') == 6:
             AU=not AU
+            save_vars()
         for r in range(1,5):
             if request.find('/r'+str(r)+'on') == 6: rele(r,1)
             if request.find('/r'+str(r)+'off') == 6: rele(r,0)
+            save_vars()
         if request.find('/r5off') == 6:
             for x in range(1,5): rele(x,0)
         if request.find('/ring') == 6:
