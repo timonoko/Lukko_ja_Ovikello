@@ -1,4 +1,5 @@
 
+
 print('Testing  24')
 
 try:
@@ -123,6 +124,7 @@ def savee(lista):
     with open('jemma.txt','w') as f:
         for x in lista:
            f.write(x+"="+str(eval(x))+"\n")
+
 def save_vars():
     savee(["OVIKELLO","releet","AU"])
            
@@ -180,9 +182,12 @@ while True:
             AU=not AU
             save_vars()
         for r in range(1,5):
-            if request.find('/r'+str(r)+'on') == 6: rele(r,1)
-            if request.find('/r'+str(r)+'off') == 6: rele(r,0)
-            save_vars()
+            if request.find('/r'+str(r)+'on') == 6:
+                rele(r,1)
+                save_vars()
+            if request.find('/r'+str(r)+'off') == 6:
+                rele(r,0)
+                save_vars()
         if request.find('/r5off') == 6:
             for x in range(1,5): rele(x,0)
         if request.find('/ring') == 6:
