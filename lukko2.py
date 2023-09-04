@@ -105,8 +105,9 @@ def buttoni():
     if BUTTON.value()==LO:
         loc=0
         hic=0
-        while hic<50:
+        while hic<100:
             while BUTTON.value()==LO:
+                wdt.feed()
                 time.sleep(0.010)
                 loc=loc+1
                 hic=0
@@ -203,6 +204,7 @@ while True:
     except OSError:
         nummer=buttoni()
         if nummer>0:
+            print("Ringejä=",nummer)
             RING=True
             if OVIKELLO:
                 OVIKELLO=False
