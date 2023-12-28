@@ -94,6 +94,17 @@ def auki():
     mysleep(1)
     rele(1,0)
     rele(2,0)
+
+def tick():
+    rele(1,1)
+    rele(2,0)
+    time.sleep(0.1)
+    rele(1,0)
+    time.sleep(0.1)
+    rele(2,1)
+    time.sleep(0.1)
+    rele(1,0)
+    rele(2,0)
     
 from machine import Pin
 
@@ -171,6 +182,7 @@ while True:
         if request.find('/ovikello') == 6:
                 OVIKELLO=True
                 save_vars()
+                tick()
         if request.find('/kerran') == 6:
                 OVIKELLO=False
                 save_vars()
