@@ -207,6 +207,10 @@ while True:
             RING=False
         if request.find('/reset') == 6:
             macreset()
+        if request.find('/webrepl') == 6:
+            with open("do_webrepl","w") as fu:
+                fu.write("hello")
+            macreset()
         response = web_page()
         conn.send('HTTP/1.1 200 OK\n')
         conn.send('Content-Type: text/html\n')

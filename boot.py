@@ -1,3 +1,4 @@
+
 def do_connect():
     import network
     sta_if = network.WLAN(network.STA_IF)
@@ -25,7 +26,6 @@ import esp
 esp.osdebug(None)
 
 import os
-print(os.listdir())
 
 def ls():
     print(os.listdir())
@@ -34,13 +34,16 @@ import webrepl
 webrepl.start()
 
 do_not_connect()
-
+"""
 import time
-for x in range(10):
+for x in range(6):
     print('waiting')
-    time.sleep(2)
-
-import lukko2
+    time.sleep(1)
+"""
+if not "do_webrepl" in os.listdir():
+    import lukko2
+else:    
+    os.remove("do_webrepl")
 
 
 
