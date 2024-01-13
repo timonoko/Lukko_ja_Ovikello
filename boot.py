@@ -30,20 +30,16 @@ import os
 def ls():
     print(os.listdir())
 
+do_not_connect()
+
+if not "do_webrepl" in os.listdir():
+    import lukko2
+
+os.remove("do_webrepl")
+
 import webrepl
 webrepl.start()
 
-do_not_connect()
-"""
-import time
-for x in range(6):
-    print('waiting')
-    time.sleep(1)
-"""
-if not "do_webrepl" in os.listdir():
-    import lukko2
-else:    
-    os.remove("do_webrepl")
 
 
 
