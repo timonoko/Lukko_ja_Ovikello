@@ -85,6 +85,8 @@ def mysleep(x):
             time.sleep(0.2)
 
 def auki():
+    tuuletin=releet[3]
+    rele(3,0)
     rele(1,1)
     rele(2,0)
     mysleep(2)
@@ -94,6 +96,7 @@ def auki():
     mysleep(1)
     rele(1,0)
     rele(2,0)
+    rele(3,tuuletin)
 
 def tick():
     rele(1,1)
