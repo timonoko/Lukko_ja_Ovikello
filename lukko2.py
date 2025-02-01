@@ -169,7 +169,9 @@ print('KAYNNISTYS!')
 while True:
     reset_laskuri+=1
     wdt.feed()
-    if reset_laskuri%100==0: print('reset_laskuriii:',reset_laskuri)
+    if reset_laskuri%200==0:
+        AU=0
+        print('reset_laskuriii:',reset_laskuri)
     if reset_laskuri%1000==0: 
         p=uping.ping('192.168.1.11')
         if p[1]==0: macreset()
@@ -195,6 +197,7 @@ while True:
                 AU=False
                 save_vars()
         if request.find('/au') == 6:
+            reset_laskuri=0
             AU=not AU
             save_vars()
         for r in range(1,5):
