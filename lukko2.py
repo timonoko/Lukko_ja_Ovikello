@@ -42,7 +42,11 @@ def web_page():
         ring="""<p><a href="/ring"> <button class="button" >RING</button></a>"""
     else:
         ring=" "
-    menu=""" <p> 
+    p=uping.ping('192.168.1.198',count=1,timeout=500)
+    if p[1] != 0:
+        menu="""<p><h1>KANNY</h1>"""
+    else: menu="<h1>LUKKO</h1> "
+    menu+=""" <p> 
     <a href="/au"> <button class=" """+butt+""" " >AU-</button></a>
     <a href="/ki"> <button class="button">KI</button></a> <p>
     """+hit+ring+"""
@@ -64,7 +68,6 @@ def web_page():
   .button2{background-color: #5d9868;}</style>
      </head>
       <body>
-     <h1>LUKKO</h1> 
      """ + menu + """
       <p> 
      """ + this_ip + """
@@ -195,15 +198,15 @@ while True:
                 auki()
                 AU=False
                 save_vars()
-            else:
-                p=uping.ping('192.168.1.198',count=1,timeout=500)
-                if p[1] != 0:
-                    auki()
-                    save_vars()
         if request.find('/au') == 6:
             reset_laskuri=0
             AU=not AU
             save_vars()
+        if request.find('/kanny') == 6:
+            p=uping.ping('192.168.1.198',count=1,timeout=500)
+            if p[1] != 0:
+                auki()
+                save_vars()
         for r in range(1,5):
             if request.find('/r'+str(r)+'on') == 6:
                 rele(r,1)
