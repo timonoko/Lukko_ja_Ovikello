@@ -54,9 +54,7 @@ def web_page():
     """%(x,x)
     sta_if = network.WLAN(network.STA_IF)
     this_ip=sta_if.ifconfig()[0]
-    html = """
-     <html><head> 
-     <title>LUKKO</title>
+    html = """<html><head><title>LUKKO</title>
      <meta http-equiv="refresh" content="3;url=http://"""+this_ip+"""/">
      <meta name="viewport" content="width=device-width, initial-scale=1">
      <link rel="icon" href="data:,">
@@ -85,6 +83,7 @@ def mysleep(x):
             time.sleep(0.2)
 
 def auki():
+    print('AUKI')
     tuuletin=releet[3]
     rele(3,0)
     rele(1,1)
@@ -196,6 +195,11 @@ while True:
                 auki()
                 AU=False
                 save_vars()
+            else:
+                p=uping.ping('192.168.1.198',count=1,timeout=500)
+                if p[1] != 0:
+                    auki()
+                    save_vars()
         if request.find('/au') == 6:
             reset_laskuri=0
             AU=not AU
