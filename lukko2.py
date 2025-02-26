@@ -203,10 +203,17 @@ while True:
             AU=not AU
             save_vars()
         if request.find('/kanny') == 6:
-            p=uping.ping('192.168.1.198',count=1,timeout=500)
-            if p[1] != 0:
-                auki()
-                save_vars()
+            tick=10
+            while tick>0:
+                p=uping.ping('192.168.1.198',count=1,timeout=500)
+                if p[1] != 0:
+                    auki()
+                    save_vars()
+                    break
+                else:
+                    print('Ei Kännyä')
+                    tick-=1
+                    mysleep(1)
         for r in range(1,5):
             if request.find('/r'+str(r)+'on') == 6:
                 rele(r,1)
