@@ -29,6 +29,14 @@ OVIKELLO=False
 RING=False
 reset_laskuri=0
 
+
+def onko_kanny():
+    for x in ('192.168.4.2','192.168.4.3','192.168.4.4','192.168.1.198'):
+        wdt.feed()
+        p=uping.ping(x,count=1,timeout=50)
+        if p[1]!=0: return True
+    return False
+
 def web_page():
     if AU:
         butt="button button2"
@@ -42,10 +50,7 @@ def web_page():
         ring="""<p><a href="/ring"> <button class="button" >RING</button></a>"""
     else:
         ring=" "
-    p=uping.ping('192.168.1.198',count=1,timeout=500)
-    if p[1] != 0:
-        menu="""<p><h1>KANNY</h1>"""
-    else: menu="<h1>LUKKO</h1> "
+    menu="<h1>LUKKO</h1> "
     menu+=""" <p> 
     <a href="/au"> <button class=" """+butt+""" " >AU-</button></a>
     <a href="/ki"> <button class="button">KI</button></a> <p>
@@ -175,10 +180,10 @@ while True:
         AU=0
         print('reset_laskuriii:',reset_laskuri)
     if reset_laskuri%1000==0: 
-        p=uping.ping('192.168.1.11')
+        p=uping.ping('192.168.1.11',count=1,timeout=100)
         if p[1]==0: macreset()
     if reset_laskuri%30100==0: 
-        p=uping.ping('192.168.1.63')
+        p=uping.ping('192.168.1.63',count=1,timeout=100)
         if p[1]==0: macreset()
     s.settimeout(0.2)
     try:
@@ -203,17 +208,11 @@ while True:
             AU=not AU
             save_vars()
         if request.find('/kanny') == 6:
-            tick=10
-            while tick>0:
-                p=uping.ping('192.168.1.198',count=1,timeout=500)
-                if p[1] != 0:
-                    auki()
-                    save_vars()
-                    break
-                else:
-                    print('Ei Kännyä')
-                    tick-=1
-                    mysleep(1)
+            if onko_kanny():
+                auki()
+                save_vars()
+            else:
+                print('Ei Kännyä')
         for r in range(1,5):
             if request.find('/r'+str(r)+'on') == 6:
                 rele(r,1)
