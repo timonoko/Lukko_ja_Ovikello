@@ -15,9 +15,14 @@ do_connect()
 def do_not_connect():
     import network
     ap_if = network.WLAN(network.AP_IF)
+    ap_if.config(essid="Glukko",password='Juhannusyona')
     print('AP network config:', ap_if.ifconfig())
-    ap_if.active(False)
+    ap_if.active(True)
+#    ap_if.active(False)
     print('AP network config:', ap_if.ifconfig())
+
+do_not_connect()
+
     
 import gc
 gc.collect()
@@ -30,7 +35,6 @@ import os
 def ls():
     print(os.listdir())
 
-do_not_connect()
 
 if not "do_webrepl" in os.listdir():
     import lukko2
