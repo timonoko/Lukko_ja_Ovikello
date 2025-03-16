@@ -33,7 +33,7 @@ reset_laskuri=0
 def onko_kanny():
     for x in ('192.168.4.2','192.168.4.3','192.168.4.4','192.168.1.198'):
         wdt.feed()
-        p=uping.ping(x,count=1,timeout=50)
+        p=uping.ping(x,count=1,timeout=300)
         if p[1]!=0: return True
     return False
 
