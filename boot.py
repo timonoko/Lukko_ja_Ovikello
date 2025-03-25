@@ -12,16 +12,15 @@ def do_connect():
 
 do_connect() 
 
-def do_not_connect():
+def do_AP_connect():
     import network
-    ap_if = network.WLAN(network.AP_IF)
-    ap_if.config(essid="Glukko",password='Juhannusyona')
-    print('AP network config:', ap_if.ifconfig())
-    ap_if.active(True)
-#    ap_if.active(False)
-    print('AP network config:', ap_if.ifconfig())
+    ap = network.WLAN(network.AP_IF)
+    ap.active(True)
+    ap.ifconfig(('192.168.4.1', '255.255.255.0', '192.168.4.1', '0.0.0.0'))
+    ap.config(essid="Glukko",password='Juhannusyona',authmode=network.AUTH_WPA_WPA2_PSK)
+    print('AP network config:', ap.ifconfig())
 
-do_not_connect()
+do_AP_connect()
 
     
 import gc
