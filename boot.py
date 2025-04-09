@@ -18,7 +18,7 @@ def do_AP_connect():
     import network
     ap = network.WLAN(network.AP_IF)
     ap.active(True)
-    ap.ifconfig(('192.168.4.1', '255.255.255.0', '192.168.4.1', '192.168.4.2'))
+    ap.ifconfig(('192.168.4.1', '255.255.255.0', '192.168.4.1', '192.168.4.1'))
     ap.config(essid="Glukko",password='Juhannusyona',authmode=network.AUTH_WPA_WPA2_PSK)
     time.sleep(1)
     print('AP network config:', ap.ifconfig())

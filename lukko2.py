@@ -29,13 +29,12 @@ OVIKELLO=False
 RING=False
 reset_laskuri=0
 
-
 def onko_kanny():
-    for x in ('192.168.1.198','192.168.4.2','192.168.4.3',
-        '192.168.4.4','192.168.4.5','192.168.4.6','192.168.4.7',
-        '192.168.4.8'):
+    p=uping.ping('192.168.1.198',count=1,timeout=300)
+    if p[1]!=0: return True
+    for x in range(2,20):
         wdt.feed()
-        p=uping.ping(x,count=1,timeout=300)
+        p=uping.ping('192.168.4.'+str(x),count=1,timeout=100)
         if p[1]!=0: return True
     return False
 
