@@ -206,7 +206,7 @@ while True:
                 save_vars()
         if request.find('/au') == 6:
             reset_laskuri=0
-            AU=not AU
+            AU=True
             save_vars()
         if request.find('/kanny') == 6:
             if onko_kanny():
