@@ -3,12 +3,15 @@ while true; do
     then
       if hcitool scan | grep Power; then
         curl-silent Lukko/r4off 
+        sleep 1
       else
+        curl-silent Lukko/r4on 
+        curl-silent Lukko/r4on 
         curl-silent Lukko/r4on 
       fi
     else
-      curl-silent Lukko/r4on 
+      curl-silent Lukko/r4on
+      sleep 1
   fi
-  sleep 1
 done
 
