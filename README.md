@@ -1,7 +1,7 @@
 # Lukko_ja_Ovikello
 
-**UUTTA** keksin käyttöä neljännelle releelle. Jos nimittäin
-yritän poistua kodista ilman puhelinta, ovenpäällä syttyy punainen vilkkuledi. Tämä tapahtuu, jos puhelin on edelleen Wifi-verkossa, mutta ei ole enää BT-verkossa. Ref puhelin-ovella.
+UUTTA: keksin käyttöä neljännelle releelle. Jos nimittäin
+yritän poistua kodista ilman puhelinta, ovenpäällä syttyy punainen vilkkuledi. Tämä sammuu vain, jos puhelin on Wifi-verkossa, mutta ei ole enää Bluetooth-verkossa. Ref puhelin-ovella.
 
 Korjasin sysipaskan ruotsalaisen Glue-merkkisen ulko-oven lukon
 
