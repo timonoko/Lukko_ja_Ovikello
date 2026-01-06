@@ -1,0 +1,12 @@
+while true; do
+  if ping -c 1 -q ulefone &> /dev/null ;
+    then
+      if hcitool scan | grep Power; then
+        curl-silent Lukko/r4off 
+      else
+        curl-silent Lukko/r4on 
+      fi
+  fi
+  sleep 1
+done
+
