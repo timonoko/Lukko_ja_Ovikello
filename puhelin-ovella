@@ -6,6 +6,8 @@ while true; do
       else
         curl-silent Lukko/r4on 
       fi
+    else
+      curl-silent Lukko/r4on 
   fi
   sleep 1
 done
