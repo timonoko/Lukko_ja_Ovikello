@@ -180,12 +180,12 @@ while True:
     if reset_laskuri%200==0:
         AU=0
         print('reset_laskuriii:',reset_laskuri)
+    if reset_laskuri==5000:
+        macreset()
     if reset_laskuri%1000==0:
         print('ping-testi1')
         p=uping.ping('192.168.1.11',count=1,timeout=100)
         if p[1]==0: macreset()
-    if reset_laskuri==20000:
-        macreset()
 #    if reset_laskuri%30100==0: 
 #        p=uping.ping('192.168.1.63',count=1,timeout=100)
 #        if p[1]==0: macreset()

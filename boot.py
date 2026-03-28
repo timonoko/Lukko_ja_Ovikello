@@ -1,30 +1,37 @@
-import time
+import time,machine
 
 
 def do_connect():
     import network
-    sta_if = network.WLAN(network.STA_IF)
-    if not sta_if.isconnected():
-        print('connecting to network...')
+    hukassa=True
+    while hukassa:
+        sta_if = network.WLAN(network.STA_IF)
         sta_if.active(True)
-        sta_if.connect('Jorpakko', 'Juhannusyona')
-        while not sta_if.isconnected():
-            pass
+        a=sta_if.scan()
+        for n in range(len(a)):
+            print(a[n])
+            if b'Jorpakko'in a[n]:
+                hukassa=False
+                break
+    sta_if = network.WLAN(network.STA_IF)
+    sta_if.active(True)
+    print('connecting to network...')
+    sta_if.connect('Jorpakko', 'Juhannusyona')
+    time.sleep(1)
+    if not sta_if.isconnected(): time.sleep(6)
+    if not sta_if.isconnected(): machine.reset()
     print('IF network config:', sta_if.ifconfig())
 
 do_connect() 
 
-def do_AP_connect():
+def do_not_connect():
     import network
-    ap = network.WLAN(network.AP_IF)
-    ap.active(True)
-    ap.ifconfig(('192.168.4.1', '255.255.255.0', '192.168.4.1', '192.168.4.1'))
-    ap.config(essid="Glukko",password='Juhannusyona',authmode=network.AUTH_WPA_WPA2_PSK)
-    time.sleep(1)
-    print('AP network config:', ap.ifconfig())
+    ap_if = network.WLAN(network.AP_IF)
+    print('AP network config:', ap_if.ifconfig())
+    ap_if.active(False)
+    print('AP network config:', ap_if.ifconfig())
 
-do_AP_connect()
-
+do_not_connect()
     
 import gc
 gc.collect()
@@ -36,7 +43,6 @@ import os
 
 def ls():
     print(os.listdir())
-
 
 if not "do_webrepl" in os.listdir():
     import lukko2
