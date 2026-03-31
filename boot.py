@@ -1,26 +1,21 @@
 import time,machine
+from machine import Timer
 
+
+def timeout_reboot(t):
+    print("Wi-Fi connection hung for too long! Rebooting...")
+    machine.reset()
 
 def do_connect():
     import network
-    hukassa=True
-    while hukassa:
-        sta_if = network.WLAN(network.STA_IF)
-        sta_if.active(True)
-        a=sta_if.scan()
-        for n in range(len(a)):
-            print(a[n])
-            if b'Jorpakko'in a[n]:
-                hukassa=False
-                break
+    timer = Timer(-1)
+    timer.init(period=20000, mode=Timer.ONE_SHOT, callback=timeout_reboot)
     sta_if = network.WLAN(network.STA_IF)
     sta_if.active(True)
-    print('connecting to network...')
     sta_if.connect('Jorpakko', 'Juhannusyona')
-    time.sleep(1)
-    if not sta_if.isconnected(): time.sleep(6)
-    if not sta_if.isconnected(): machine.reset()
+    while not sta_if.isconnected(): time.sleep(1)
     print('IF network config:', sta_if.ifconfig())
+    timer.deinit()
 
 do_connect() 
 

@@ -174,13 +174,29 @@ s.listen(5)
 
 print('KAYNNISTYS!')
 
+from machine import Timer
+
+def timeout_reboot(t):
+    print("TimerTimeout.")
+    time.sleep(10)
+    mac.reset()
+
+
+def start_timer():
+    global timer
+    print('Start Timer')
+    timer = Timer(-1)
+    timer.init(period=30*60*1000, mode=Timer.ONE_SHOT, callback=timeout_reboot)
+
+start_timer()
+    
 while True:
     reset_laskuri+=1
     wdt.feed()
     if reset_laskuri%200==0:
         AU=0
         print('reset_laskuriii:',reset_laskuri)
-    if reset_laskuri==5000:
+    if reset_laskuri==10000:
         macreset()
     if reset_laskuri%1000==0:
         print('ping-testi1')
@@ -230,6 +246,9 @@ while True:
             RING=False
         if request.find('/reset') == 6:
             macreset()
+        if request.find('/ping') == 6:
+            timer.deinit()
+            start_timer()
         if request.find('/webrepl') == 6:
             with open("do_webrepl","w") as fu:
                 fu.write("hello")
