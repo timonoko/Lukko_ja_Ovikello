@@ -1,14 +1,8 @@
 
 
-print('Testing  24')
+print('Testing  25')
 
-try:
-  import usocket as socket
-except:
-  import socket
-import network,time
-
-import machine,uping
+import network,time,socket,machine,uping
 
 # print prints only to Python client
 from machine import UART
@@ -194,7 +188,7 @@ while True:
     reset_laskuri+=1
     wdt.feed()
     if reset_laskuri%200==0:
-        AU=0
+        if reset_laskuri>1000:AU=False
         print('reset_laskuriii:',reset_laskuri)
     if reset_laskuri==10000:
         macreset()
