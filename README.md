@@ -1,5 +1,7 @@
 # Lukko_ja_Ovikello
 
+Uutta: Lukko_proxy.py on Termuxissa oleva palvelu, jonka voi käynnistää BIP5-kellon HTTP/GET-äpillä.
+
 UUTTA: keksin käyttöä neljännelle releelle. Jos nimittäin
 yritän poistua kodista ilman puhelinta, ovenpäällä syttyy punainen vilkkuledi. Tämä sammuu vain, jos puhelin on Wifi-verkossa, mutta ei ole enää Bluetooth-verkossa. Ref puhelin-ovella.
 
