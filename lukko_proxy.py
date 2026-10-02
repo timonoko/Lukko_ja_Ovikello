@@ -19,45 +19,25 @@ class LukkoProxyHandler(BaseHTTPRequestHandler):
         if self.path == "/avaa" or self.path == "/":
           if (int(time.time())-aikaleima)>20: viritetty=False
           try:
-            URL1 = "http://89.27.95.8:7981"
-            URL2 = "http://192.168.1.117"
-            if os.system('ping -c 1 192.168.1.117')==0:
-                  URL1,URL2=URL2,URL1
-            if not viritetty:
+              if not viritetty:
                 aikaleima=int(time.time())
-                try:
-                    os.system(f"curl -s -m 10 {URL1}/au")
-                    viritetty = True
-                    response_data = {
-                    "message": "VIRITETTY1!",
+                os.system('ssh -X tnoko@$(cat ~/KOTIKONE) -p 7732 "curl Lukko/au"')
+                viritetty = True
+                response_data = {
+                    "message": "VIRITETTYYY!",
                     "error": ""
                     }
-                except:
-                    os.system(f"curl -s  -m 10 {URL2}/au")
-                    viritetty = True
-                    response_data = {
-                    "message": "VIRITETTY2!",
-                    "error": ""
-                    }
-            else:
-                try:
-                    os.system(f"curl -s  -m 10  {URL1}/ki")
-                    viritetty = False
-                    response_data = {
-                    "message": "AVATTU1!",
-                    "error": ""
-                    }
-                except:
-                    os.system(f"curl -s  -m 10  {URL2}/ki")
-                    viritetty = False
-                    response_data = {
-                    "message": "AVATTU2!",
+              else:
+                os.system('ssh -X tnoko@$(cat ~/KOTIKONE) -p 7732 "curl Lukko/ki"')
+                viritetty = False
+                response_data = {
+                    "message": "AVATTUUU!",
                     "error": ""
                     }
           except:
                 viritetty = False
                 response_data = {
-                        "message": "VIRHE",
+                        "message": "VIRHEE",
                         "error": ""
                     }
         response_bytes = json.dumps(response_data).encode("utf-8")
